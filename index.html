@@ -1,27 +1,542 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Aminata Sita Camara</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aminata Sita Camara · Portfolio</title>
+<meta name="description" content="Portfolio d'Aminata Sita Camara, étudiante en BUT Informatique – Développement &amp; Systèmes">
+<meta name="author" content="Aminata Sita Camara">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#060A13; --bg2:#0A1120; --surface:#0E1729; --line:#1C2A44;
+  --text:#E4EEFF; --muted:#8FA4C8; --dim:#5D7196;
+  --cyan:#22D3EE; --blue:#3B82F6; --green:#3DFF95; --violet:#8B7CFF; --amber:#FFC247;
+  --display:"Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--cyan)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,32px)}
+h1,h2,h3{font-family:var(--display);line-height:1.1;text-wrap:balance;margin:0}
+.mono{font-family:var(--mono)}
+
+/* NAV */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(6,10,19,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{font-family:var(--mono);font-weight:600;font-size:15px;color:var(--text);text-decoration:none}
+.logo b{color:var(--green)}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav ul a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500}
+nav ul a:hover{color:var(--cyan)}
+@media (max-width:720px){nav ul{display:none}}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+  background:radial-gradient(800px 400px at 85% 10%,rgba(59,130,246,.22),transparent 60%),
+             radial-gradient(600px 380px at 10% 90%,rgba(61,255,149,.12),transparent 60%),var(--bg)}
+#net{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center;padding-block:88px 96px}
+@media (max-width:880px){.hero .wrap{grid-template-columns:1fr;padding-block:56px 64px;gap:36px}}
+.status{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;color:var(--green);border:1px solid rgba(61,255,149,.35);background:rgba(61,255,149,.07);padding:6px 12px;border-radius:999px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.hero h1{font-size:clamp(44px,7vw,84px);font-weight:700;letter-spacing:-.01em;margin-top:22px}
+.hero h1 .grad{background:linear-gradient(90deg,var(--cyan),var(--blue) 45%,var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font-family:var(--display);font-size:clamp(18px,2.4vw,24px);color:var(--muted);margin:14px 0 22px;font-weight:500}
+.role em{font-style:normal;color:var(--cyan)}
+.lead{max-width:56ch;color:#C3D2EC;margin:0 0 30px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:12px 20px;border-radius:10px;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:var(--body)}
+.btn.primary{background:linear-gradient(90deg,var(--cyan),var(--green));color:#04121A}
+.btn.primary:hover{filter:brightness(1.1)}
+.btn.ghost{border-color:var(--line);color:var(--text);background:rgba(14,23,41,.7)}
+.btn.ghost:hover{border-color:var(--cyan)}
+
+.term{background:rgba(9,15,28,.92);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 0 1px rgba(34,211,238,.08)}
+.term-bar{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid var(--line);align-items:center}
+.term-bar span{width:11px;height:11px;border-radius:50%}
+.term-bar small{margin-left:8px;font-family:var(--mono);font-size:12px;color:var(--dim)}
+.term pre{margin:0;padding:18px 18px 20px;font-family:var(--mono);font-size:13.5px;line-height:1.75;white-space:pre-wrap;color:#C9D6EE;overflow-x:auto}
+.p{color:var(--green)} .c{color:var(--cyan)} .k{color:var(--violet)} .y{color:var(--amber)} .d{color:var(--dim)}
+.cursor{display:inline-block;width:8px;height:15px;background:var(--green);vertical-align:-2px;animation:pulse 1s steps(1) infinite}
+
+/* SECTIONS */
+section{padding-block:88px}
+section + section{border-top:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:13px;color:var(--green);letter-spacing:.06em;margin-bottom:10px}
+.eyebrow::before{content:"$ ";color:var(--dim)}
+h2{font-size:clamp(30px,4.2vw,44px);font-weight:700;margin-bottom:18px}
+.intro{color:var(--muted);max-width:62ch;margin:0 0 44px}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+@media (max-width:880px){.about{grid-template-columns:1fr;gap:32px}}
+.about p{margin:0 0 16px;color:#C3D2EC;max-width:62ch}
+.facts{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.fact{background:var(--surface);padding:16px 20px;display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:baseline}
+.fact dt{font-family:var(--mono);font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.fact dd{margin:0;font-weight:500}
+@media (max-width:460px){.fact{grid-template-columns:1fr;gap:2px}}
+
+/* SKILLS */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:880px){.skills{grid-template-columns:1fr}}
+.sk{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden}
+.sk::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--c)}
+.sk h3{font-size:20px;margin-bottom:6px;color:var(--c)}
+.sk p{color:var(--muted);font-size:14px;margin:0 0 16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.chips li{font-family:var(--mono);font-size:12.5px;padding:5px 10px;border-radius:6px;border:1px solid color-mix(in srgb,var(--c) 35%,transparent);background:color-mix(in srgb,var(--c) 9%,transparent);color:var(--text)}
+
+/* PROJECTS */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media (max-width:880px){.projects{grid-template-columns:1fr}}
+.pj{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:14px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.pj:hover{transform:translateY(-4px);border-color:var(--c);box-shadow:0 14px 40px color-mix(in srgb,var(--c) 18%,transparent)}
+.pj.feature{grid-column:1/-1;display:grid;grid-template-columns:1.3fr 1fr;gap:28px;background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(59,130,246,.05) 50%,rgba(61,255,149,.06)),var(--surface)}
+@media (max-width:880px){.pj.feature{grid-template-columns:1fr}}
+.pj-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.code{font-family:var(--mono);font-size:12px;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);padding:3px 9px;border-radius:6px}
+.kind{font-family:var(--mono);font-size:12px;color:var(--dim)}
+.pj h3{font-size:24px}
+.pj p{margin:0;color:#C3D2EC;font-size:15px}
+.pj ul.pts{margin:0;padding-left:18px;color:var(--muted);font-size:14.5px;display:grid;gap:6px}
+.pj ul.pts li::marker{color:var(--c)}
+.myrole{font-size:14px;color:var(--text);background:rgba(61,255,149,.07);border:1px dashed rgba(61,255,149,.4);border-radius:10px;padding:12px 14px}
+.myrole b{color:var(--green);font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.06em;display:block;margin-bottom:3px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;list-style:none;padding:0}
+.tags li{font-family:var(--mono);font-size:12px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);padding:3px 9px;border-radius:5px}
+
+/* Von Neumann mini diagram */
+.vn{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px;overflow-x:auto}
+.vn svg{display:block;width:100%;min-width:300px;height:auto}
+.vn figcaption{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:8px}
+
+/* Other work table */
+.others{margin-top:48px}
+.others h3{font-size:20px;margin-bottom:16px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14.5px}
+th,td{text-align:left;padding:13px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;background:var(--bg2)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--mono);font-size:12.5px;color:var(--cyan);white-space:nowrap}
+td:nth-child(2){font-weight:600}
+td:last-child{color:var(--muted)}
+
+/* TIMELINE */
+.tl{list-style:none;margin:0;padding:0;display:grid;gap:0;position:relative}
+.tl::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--cyan),var(--blue),var(--green))}
+.tl li{position:relative;padding:0 0 34px 44px}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:0;top:4px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:3px solid var(--c,var(--cyan));box-shadow:0 0 12px var(--c,var(--cyan))}
+.tl .when{font-family:var(--mono);font-size:12.5px;color:var(--c,var(--cyan))}
+.tl h3{font-size:20px;margin:4px 0 6px}
+.tl p{margin:0;color:var(--muted);max-width:62ch;font-size:15px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+@media (max-width:880px){.two{grid-template-columns:1fr;gap:48px}}
+.two h3.col{font-family:var(--mono);font-size:13px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px}
+
+/* STAGE */
+.stage{border-radius:20px;padding:clamp(28px,5vw,52px);background:
+  linear-gradient(135deg,rgba(34,211,238,.14),rgba(59,130,246,.12) 45%,rgba(61,255,149,.12)),var(--surface);
+  border:1px solid rgba(34,211,238,.35);display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
+@media (max-width:880px){.stage{grid-template-columns:1fr;gap:28px}}
+.stage h2{margin-bottom:14px}
+.stage p{color:#C3D2EC;margin:0 0 14px;max-width:56ch}
+.spec{display:grid;gap:12px;align-content:start}
+.spec div{background:rgba(6,10,19,.6);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.spec small{display:block;font-family:var(--mono);font-size:11.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.spec strong{font-family:var(--display);font-size:18px;font-weight:600}
+
+/* CONTACT */
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:880px){.contact{grid-template-columns:1fr}}
+.ct{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.ct small{font-family:var(--mono);font-size:12px;color:var(--c);letter-spacing:.08em;text-transform:uppercase}
+.ct .val{font-family:var(--mono);font-size:14px;word-break:break-all;user-select:all;color:var(--text)}
+.ct .todo{color:var(--amber)}
+.ct .btn{align-self:flex-start;padding:8px 14px;font-size:13px}
+
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--dim);font-family:var(--mono);font-size:12.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+.who{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.avatar{width:112px;height:112px;border-radius:50%;padding:3px;background:conic-gradient(var(--cyan),var(--blue),var(--green),var(--cyan));flex:none;box-shadow:0 0 30px rgba(34,211,238,.35)}
+.avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:3px solid var(--bg)}
+.skills.four{grid-template-columns:repeat(2,1fr)}
+@media (max-width:720px){.skills.four{grid-template-columns:1fr}}
+.mini{display:grid;gap:28px;align-content:start}
+.mini h4{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;margin:0 0 12px;font-weight:600}
+.bars{display:grid;gap:12px;list-style:none;margin:0;padding:0}
+.bars li{display:grid;grid-template-columns:1fr auto;gap:6px 12px;font-weight:500}
+.bars span{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.bars i{grid-column:1/-1;height:6px;border-radius:6px;background:var(--line);position:relative;overflow:hidden}
+.bars i::after{content:"";position:absolute;inset:0;width:var(--w);background:linear-gradient(90deg,var(--cyan),var(--green));border-radius:6px}
+</style>
 </head>
 <body>
-    <nav>
-        <div class="logo"> Portfolio Aminata<span>.Dev 🦁</span></div>
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-        <ul id="nav-menu">
-            <li><a href="javascript:void(0)" onclick="showSection('accueil')">Accueil</a></li>
-            <li><a href="javascript:void(0)" onclick="showSection('formations')">Formations</a></li>
-            <li><a href="javascript:void(0)" onclick="showSection('competences')">Compétences</a></li>
-            <li><a href="javascript:void(0)" onclick="showSection('projets')">Projets</a></li>
-            <li><a href="javascript:void(0)" onclick="showSection('contact')">Contact</a></li>
-        </ul>
-    </nav>
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">aminata<b>@</b>portfolio</a>
+    <ul>
+      <li><a href="#profil">Profil</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#stage">Stage</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <main id="main-content"></main>
+<header class="hero" id="top">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <div class="who">
+        <div class="avatar"><img src="data:image/jpeg;base64,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" alt="Photo d'Aminata Sita Camara"></div>
+        <span class="status"><i></i>Stage de 3 mois à partir de mars 2027</span>
+      </div>
+      <h1>Aminata Sita<br><span class="grad">Camara</span></h1>
+      <p class="role">Étudiante en BUT Informatique · <em>Développement &amp; Systèmes</em></p>
+      <p class="lead">En 2e année de BUT Informatique à l'IUT d'Aix-Marseille, site d'Arles, je recherche un stage de 3 mois à partir de mars 2027 en développement (web, logiciel) ou en systèmes et réseaux. Je veux mettre mes compétences en pratique sur des projets concrets. Sérieuse, curieuse et motivée.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projets">Voir mes projets →</a>
+        <a class="btn ghost" href="#contact">Me contacter</a>
+      </div>
+    </div>
+    <div class="term" role="img" aria-label="Terminal affichant un résumé du profil">
+      <div class="term-bar"><span style="background:#FF5F57"></span><span style="background:#FEBC2E"></span><span style="background:#28C840"></span><small>~/portfolio — bash</small></div>
+<pre><span class="p">aminata@iut-arles</span>:<span class="c">~</span>$ whoami
+Aminata Sita CAMARA
+BUT Informatique · 2e année
 
-    <button id="theme-toggle" class="theme-btn">🌓</button>
-    <script src="script.js"></script>
+<span class="p">aminata@iut-arles</span>:<span class="c">~</span>$ cat stack.txt
+<span class="y">front</span>  HTML/CSS · JavaScript · React.js
+<span class="y">back </span>  Node.js · PHP · Python · Java
+<span class="y">app  </span>  C++ · Qt
+<span class="y">bdd  </span>  PostgreSQL · SQL · Oracle
+<span class="y">sys  </span>  Debian · Postfix · VirtualBox
+
+<span class="p">aminata@iut-arles</span>:<span class="c">~</span>$ systemctl status stage
+<span class="p">●</span> stage.service <span class="d">— recherche active</span>
+   <span class="d">début :</span> <span class="c">mars 2027</span>
+   <span class="d">durée :</span> <span class="c">3 mois</span>
+
+<span class="p">aminata@iut-arles</span>:<span class="c">~</span>$ <span class="cursor"></span></pre>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="profil">
+  <div class="wrap about">
+    <div>
+      <div class="eyebrow">cat profil.md</div>
+      <h2>Profil</h2>
+      <p>Je suis en 2e année de BUT Informatique à l'IUT d'Aix-Marseille, site d'Arles. Avant, j'ai fait deux années de licence en nouvelles technologies de l'information et de la communication (NTIC) à l'Université Gamal Abdel Nasser de Conakry.</p>
+      <p>Je développe des applications de bout en bout : interfaces web, logique métier, bases de données, et je sais aussi installer et configurer les machines et les services qui les font tourner.</p>
+      <p>Je cherche un stage de 3 mois à partir de mars 2027, en développement ou en systèmes et réseaux, pour approfondir ces compétences sur des projets réels, au sein d'une équipe.</p>
+    </div>
+    <dl class="facts">
+      <div class="fact"><dt>Formation</dt><dd>BUT Informatique · IUT d'Aix-Marseille, Arles</dd></div>
+      <div class="fact"><dt>Profil</dt><dd>Développement &amp; Systèmes</dd></div>
+      <div class="fact"><dt>Stage</dt><dd>3 mois à partir de mars 2027</dd></div>
+      <div class="fact"><dt>Méthodes</dt><dd>Agile · Jira · Trello · GitLab</dd></div>
+      <div class="fact"><dt>Langues</dt><dd>Français courant · Anglais scolaire</dd></div>
+      <div class="fact"><dt>Ville</dt><dd>Nîmes (30) · Permis B, véhiculée</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="competences">
+  <div class="wrap">
+    <div class="eyebrow">ls ~/competences</div>
+    <h2>Compétences</h2>
+    <p class="intro">Les langages, outils et méthodes que j'ai pratiqués en projet.</p>
+    <div class="skills four">
+      <article class="sk" style="--c:var(--cyan)">
+        <h3>Développement</h3>
+        <p>Programmation orientée objet, web et applications de bureau.</p>
+        <ul class="chips"><li>C++</li><li>Python</li><li>FastAPI</li><li>Java</li><li>HTML / CSS</li><li>JavaScript</li><li>React.js</li><li>Node.js</li><li>Bootstrap</li><li>Qt</li><li>Git</li></ul>
+      </article>
+      <article class="sk" style="--c:var(--green)">
+        <h3>Systèmes &amp; réseaux</h3>
+        <p>Installation de postes et configuration de services.</p>
+        <ul class="chips"><li>VirtualBox</li><li>Debian 12</li><li>Windows 11</li><li>Postfix</li><li>Adressage IP</li><li>DHCP</li></ul>
+      </article>
+      <article class="sk" style="--c:var(--blue)">
+        <h3>Bases de données</h3>
+        <p>Modélisation, création et requêtes.</p>
+        <ul class="chips"><li>PostgreSQL</li><li>SQL</li><li>Oracle</li><li>PHP</li><li>WinDesign</li></ul>
+      </article>
+      <article class="sk" style="--c:var(--violet)">
+        <h3>Outils &amp; méthodes</h3>
+        <p>Gestion de projet, suivi et analyse de données.</p>
+        <ul class="chips"><li>GitLab</li><li>Jira</li><li>Trello</li><li>Méthode agile</li><li>Matplotlib</li><li>Travail en équipe</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="projets">
+  <div class="wrap">
+    <div class="eyebrow">git log --projets</div>
+    <h2>Projets</h2>
+    <p class="intro">Projets réalisés pendant mon BUT, seule ou en équipe.</p>
+
+    <div class="projects">
+      <article class="pj feature" style="--c:var(--cyan)">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="pj-head"><span class="code">SAÉ S3.A.01 · en cours</span><span class="kind">Équipe de 5 · Scrum</span></div>
+          <h3>ArchiSim</h3>
+          <p>Simulateur visuel de l'architecture de Von Neumann qui exécute du code assembleur x86 pas à pas. On voit les registres, la mémoire et les bus s'animer à chaque instruction.</p>
+          <ul class="pts">
+            <li>Simulation 64 bits : registres RAX, RBX, RCX, RDX, RIP et instructions MOV, ADD, SUB, INC, DEC</li>
+            <li>Backend Python en POO exposé par une API FastAPI, frontend Vue.js</li>
+          </ul>
+          <div class="myrole"><b>MON RÔLE · DÉVELOPPEUSE BACKEND</b>Conception du <span class="mono">Parseur</span> assembleur : lecture du code source, extraction des opérandes et vérification de la syntaxe, avec du code typé et des exceptions personnalisées.</div>
+          <ul class="tags"><li>Python</li><li>FastAPI</li><li>Vue.js</li><li>Git</li><li>Scrum</li></ul>
+        </div>
+        <figure class="vn" style="margin:0">
+          <svg viewBox="0 0 320 250" role="img" aria-label="Schéma : CPU et RAM reliés par trois bus">
+            <rect x="10" y="20" width="130" height="110" rx="10" fill="#0E1729" stroke="#22D3EE" stroke-width="1.5"/>
+            <text x="75" y="42" fill="#22D3EE" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle" font-weight="600">CPU</text>
+            <g font-family="JetBrains Mono, monospace" font-size="10" fill="#C3D2EC">
+              <rect x="22" y="52" width="106" height="16" rx="3" fill="#0A1120" stroke="#1C2A44"/><text x="28" y="64">RAX 0x0000000C</text>
+              <rect x="22" y="72" width="106" height="16" rx="3" fill="#0A1120" stroke="#1C2A44"/><text x="28" y="84">RBX 0x00000007</text>
+              <rect x="22" y="92" width="106" height="16" rx="3" fill="#0A1120" stroke="#3DFF95"/><text x="28" y="104" fill="#3DFF95">RIP 0x00000003</text>
+            </g>
+            <text x="75" y="124" fill="#5D7196" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">ALU · UC</text>
+            <rect x="180" y="20" width="130" height="110" rx="10" fill="#0E1729" stroke="#3B82F6" stroke-width="1.5"/>
+            <text x="245" y="42" fill="#3B82F6" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle" font-weight="600">RAM</text>
+            <g font-family="JetBrains Mono, monospace" font-size="10" fill="#8FA4C8">
+              <text x="192" y="64">00  MOV RAX, 5</text>
+              <text x="192" y="80">01  MOV RBX, 7</text>
+              <text x="192" y="96" fill="#3DFF95">02  ADD RAX, RBX</text>
+              <text x="192" y="112">03  INC RAX</text>
+            </g>
+            <g stroke-width="3" stroke-linecap="round">
+              <line x1="30" y1="160" x2="290" y2="160" stroke="#22D3EE"/>
+              <line x1="30" y1="190" x2="290" y2="190" stroke="#3DFF95"/>
+              <line x1="30" y1="220" x2="290" y2="220" stroke="#8B7CFF"/>
+            </g>
+            <g stroke="#1C2A44" stroke-width="1.5" stroke-dasharray="3 3">
+              <line x1="75" y1="130" x2="75" y2="220"/><line x1="245" y1="130" x2="245" y2="220"/>
+            </g>
+            <g font-family="JetBrains Mono, monospace" font-size="9.5" fill="#E4EEFF">
+              <text x="160" y="153" text-anchor="middle">bus de données</text>
+              <text x="160" y="183" text-anchor="middle">bus d'adresses</text>
+              <text x="160" y="213" text-anchor="middle">bus de contrôle</text>
+            </g>
+            <circle r="5" fill="#22D3EE" cy="160"><animate attributeName="cx" values="245;75;245" dur="3.2s" repeatCount="indefinite"/></circle>
+          </svg>
+          <figcaption>Exécution de l'instruction 02 : ADD RAX, RBX</figcaption>
+        </figure>
+      </article>
+
+      <article class="pj" style="--c:var(--cyan)">
+        <div class="pj-head"><span class="code">Application</span><span class="kind">Développement d'application</span></div>
+        <h3>Immatriculation d'automobiles</h3>
+        <p>Application de bureau pour gérer l'immatriculation de véhicules, avec une interface graphique Qt et un suivi de version sous Git.</p>
+        <ul class="tags"><li>C++</li><li>Qt</li><li>Git</li></ul>
+      </article>
+
+      <article class="pj" style="--c:var(--blue)">
+        <div class="pj-head"><span class="code">SAÉ S2.02</span><span class="kind">Algorithmique · Graphes</span></div>
+        <h3>Temps de route entre villes</h3>
+        <p>Comparaison d'approches algorithmiques pour calculer les temps de trajet entre villes françaises, dont l'algorithme de Floyd-Warshall, avec des graphiques de performance.</p>
+        <ul class="tags"><li>C++</li><li>Python</li><li>Matplotlib</li><li>Floyd-Warshall</li></ul>
+      </article>
+
+      <article class="pj" style="--c:var(--green)">
+        <div class="pj-head"><span class="code">SAÉ S2.03</span><span class="kind">Réseau · Linux</span></div>
+        <h3>Service de messagerie</h3>
+        <p>Installation d'un service réseau de messagerie sous Linux pour une entreprise fictive : envoi et réception des courriels entre les comptes des employés.</p>
+        <ul class="tags"><li>Linux</li><li>Postfix</li><li>Dovecot</li><li>SMTP</li></ul>
+      </article>
+
+      <article class="pj" style="--c:var(--green)">
+        <div class="pj-head"><span class="code">Système</span><span class="kind">Virtualisation</span></div>
+        <h3>Poste de développement virtuel</h3>
+        <p>Installation et configuration de machines virtuelles Debian 12 et Windows 11 pour disposer d'un environnement de développement complet.</p>
+        <ul class="tags"><li>VirtualBox</li><li>Debian 12</li><li>Windows 11</li></ul>
+      </article>
+
+      <article class="pj" style="--c:var(--violet)">
+        <div class="pj-head"><span class="code">Base de données</span><span class="kind">Conception · SQL</span></div>
+        <h3>Création d'une base de données</h3>
+        <p>Modélisation des données avec WinDesign, création de la base sous PostgreSQL et Oracle, requêtes SQL et accès depuis PHP.</p>
+        <ul class="tags"><li>WinDesign</li><li>PostgreSQL</li><li>SQL</li><li>Oracle</li><li>PHP</li></ul>
+      </article>
+
+      <article class="pj" style="--c:var(--amber)">
+        <div class="pj-head"><span class="code">Web</span><span class="kind">Full Stack</span></div>
+        <h3>Création d'un site web</h3>
+        <p>Site web complet, de l'interface responsive jusqu'au serveur, avec une partie en Java.</p>
+        <ul class="tags"><li>HTML/CSS</li><li>JavaScript</li><li>Bootstrap</li><li>React.js</li><li>Node.js</li><li>Java</li></ul>
+      </article>
+    </div>
+
+    <div class="others">
+      <h3>Gestion de projet et autres travaux</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Domaine</th><th>Sujet</th><th>Ce que j'ai fait</th></tr></thead>
+          <tbody>
+            <tr><td>Agile</td><td>Gestion de projet</td><td>Organisation du travail en sprints et suivi des tâches avec Jira, Trello et GitLab</td></tr>
+            <tr><td>SAÉ S2.05</td><td>Planification</td><td>Diagramme PERT, évaluation des coûts et planning d'un projet en équipe de 5 (note 14/20)</td></tr>
+            <tr><td>Sécurité</td><td>Cryptographie RSA</td><td>Génération de clés, chiffrement et déchiffrement en SageMath, étude de l'attaque de Wiener</td></tr>
+            <tr><td>Réseaux</td><td>Adressage et routage</td><td>Découpage en sous-réseaux, adressage IP, DHCP et tables de routage</td></tr>
+            <tr><td>C++</td><td>Codage d'image</td><td>Classe GrayImage : lecture et écriture d'images au format PGM</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="parcours">
+  <div class="wrap">
+    <div class="eyebrow">history</div>
+    <h2>Parcours</h2>
+    <p class="intro">Ma formation, mes qualités et ce qui m'anime en dehors de l'informatique.</p>
+    <div class="two">
+      <div>
+        <h3 class="col">Formation</h3>
+        <ol class="tl">
+          <li style="--c:var(--cyan)"><div class="when">2025 – aujourd'hui</div><h3>BUT Informatique</h3><p>IUT d'Aix-Marseille, site d'Arles.</p></li>
+          <li style="--c:var(--blue)"><div class="when">2023 – 2025</div><h3>Licence 1 &amp; 2 · NTIC</h3><p>Nouvelles technologies de l'information et de la communication. Université Gamal Abdel Nasser de Conakry.</p></li>
+          <li style="--c:var(--green)"><div class="when">2022 – 2023</div><h3>Baccalauréat scientifique</h3><p>CSU-INSET, Guinée.</p></li>
+        </ol>
+      </div>
+      <div class="mini">
+        <div>
+          <h4>Savoir-être</h4>
+          <ul class="chips" style="--c:var(--green)"><li>Esprit d'analyse</li><li>Rigueur</li><li>Adaptabilité</li><li>Esprit d'équipe</li></ul>
+        </div>
+        <div>
+          <h4>Langues</h4>
+          <ul class="bars">
+            <li>Français <span>Courant</span><i style="--w:92%"></i></li>
+            <li>Anglais <span>Niveau scolaire</span><i style="--w:45%"></i></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Centres d'intérêt</h4>
+          <ul class="chips" style="--c:var(--violet)"><li>Sport</li><li>Lecture</li><li>Cuisine</li><li>Voyage</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stage">
+  <div class="wrap">
+    <div class="stage">
+      <div>
+        <div class="eyebrow">sudo apt install stagiaire</div>
+        <h2>Je recherche un stage</h2>
+        <p>Dans le cadre de ma 2e année de BUT Informatique, je recherche un stage de 3 mois à partir de mars 2027, en développement (web, logiciel) ou en systèmes et réseaux. À l'issue du stage, je suis ouverte à poursuivre avec la même structure.</p>
+        <p>J'apporte des bases solides du front au back, l'habitude du travail en équipe agile et une vraie envie d'apprendre sur des projets concrets.</p>
+        <a class="btn primary" href="#contact" style="margin-top:6px">Proposer un stage →</a>
+      </div>
+      <div class="spec">
+        <div><small>Domaines</small><strong>Développement · Systèmes &amp; réseaux</strong></div>
+        <div><small>Début</small><strong>Mars 2027 · 3 mois</strong></div>
+        <div><small>Formation</small><strong>BUT Informatique, 2e année</strong></div>
+        <div><small>Localisation</small><strong>Nîmes (30)</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">ping aminata</div>
+    <h2>Contact</h2>
+    <p class="intro">Je réponds rapidement par email ou par téléphone.</p>
+    <div class="contact">
+      <div class="ct" style="--c:var(--cyan)">
+        <small>Email</small>
+        <span class="val" id="mail">aminatasitacamara2005@gmail.com</span>
+        <button class="btn ghost" id="copy" type="button">Copier l'adresse</button>
+      </div>
+      <div class="ct" style="--c:var(--green)">
+        <small>Téléphone</small>
+        <span class="val">+33 7 59 07 24 25</span>
+        <span style="color:var(--muted);font-size:14px">Nîmes (30)</span>
+      </div>
+      <div class="ct" style="--c:var(--blue)">
+        <small>LinkedIn · GitHub</small>
+        <span class="val">github.com/AminataCamara24</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn ghost" href="https://www.linkedin.com/in/aminata-sita-camara-a53024392" target="_blank" rel="noopener">LinkedIn ↗</a><a class="btn ghost" href="https://github.com/AminataCamara24" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Aminata Sita Camara</span><span>BUT Informatique · IUT d'Aix-Marseille, Arles</span></div>
+</footer>
+
+<script>
+(function(){
+  const btn=document.getElementById('copy'), mail=document.getElementById('mail');
+  btn.addEventListener('click',()=>{
+    const done=()=>{btn.textContent='Adresse copiée';setTimeout(()=>btn.textContent="Copier l'adresse",2000)};
+    const fallback=()=>{const r=document.createRange();r.selectNodeContents(mail);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Adresse sélectionnée'};
+    try{navigator.clipboard.writeText(mail.textContent).then(done,fallback)}catch(e){fallback()}
+  });
+
+  // Réseau animé : nœuds reliés, paquets qui circulent
+  const cv=document.getElementById('net'), ctx=cv.getContext('2d');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cols=['#22D3EE','#3B82F6','#3DFF95'];
+  let W,H,nodes=[],edges=[],packets=[];
+  function build(){
+    const r=cv.getBoundingClientRect(), dpr=Math.min(devicePixelRatio||1,2);
+    W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    const n=Math.round(Math.max(14,Math.min(34,W*H/26000)));
+    nodes=[];for(let i=0;i<n;i++)nodes.push({x:Math.random()*W,y:Math.random()*H,c:cols[i%3],r:Math.random()<.2?3.5:2});
+    edges=[];
+    nodes.forEach((a,i)=>{
+      const near=nodes.map((b,j)=>({j,d:Math.hypot(a.x-b.x,a.y-b.y)})).filter(o=>o.j!==i).sort((p,q)=>p.d-q.d).slice(0,2);
+      near.forEach(o=>{if(!edges.some(e=>(e[0]===o.j&&e[1]===i)))edges.push([i,o.j])});
+    });
+    packets=[];for(let i=0;i<Math.round(edges.length/3);i++)packets.push(newPacket());
+  }
+  function newPacket(){const e=edges[Math.floor(Math.random()*edges.length)];return{e,t:Math.random(),s:.003+Math.random()*.006,c:nodes[e[0]].c}}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.lineWidth=1;
+    edges.forEach(([a,b])=>{ctx.strokeStyle='rgba(59,130,246,.16)';ctx.beginPath();ctx.moveTo(nodes[a].x,nodes[a].y);ctx.lineTo(nodes[b].x,nodes[b].y);ctx.stroke()});
+    nodes.forEach(n=>{ctx.fillStyle=n.c;ctx.globalAlpha=.55;ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,7);ctx.fill()});
+    ctx.globalAlpha=1;
+    packets.forEach((p,i)=>{
+      const a=nodes[p.e[0]],b=nodes[p.e[1]];
+      const x=a.x+(b.x-a.x)*p.t,y=a.y+(b.y-a.y)*p.t;
+      ctx.fillStyle=p.c;ctx.shadowColor=p.c;ctx.shadowBlur=10;ctx.beginPath();ctx.arc(x,y,2.4,0,7);ctx.fill();ctx.shadowBlur=0;
+      if(!reduce){p.t+=p.s;if(p.t>=1)packets[i]=newPacket()}
+    });
+    if(!reduce)requestAnimationFrame(draw);
+  }
+  build();draw();
+  let to;addEventListener('resize',()=>{clearTimeout(to);to=setTimeout(()=>{build();if(reduce)draw()},200)});
+})();
+</script>
+
 </body>
 </html>
